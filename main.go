@@ -1,13 +1,9 @@
 /*
-Hands-on exercise #47
-For this exercise, do the following:
-	● Create a slice to store the names of all of the states in the United States of America.
-		○ Use make and append to do this.
-		○ Goal: do not have the array that underlies the slice created more than once.
-	● Print out
-		○ the len
-		○ the cap
-		○ the values, along with their index position, without using the range clause.
+Hands-on exercise #48
+	Create a slice of a slice of string ([][]string). Store the following data in the multi-dimensional
+	slice:
+		"James", "Bond", "Shaken, not stirred"
+		"Miss", "Moneypenny", "I'm 008."
 */
 
 package main
@@ -16,24 +12,14 @@ import "fmt"
 
 func main() {
 
-	usa := make([]string, 0, 50)
+	x1 := []string{"James", "Bond", "Shaken, not stirred"}
+	x2 := []string{"Miss", "Moneypenny", "I'm 008."}
+	xss := [][]string{x1, x2}
 
-	fmt.Printf("len = %v \t cap = %v\n", len(usa), cap(usa))
-
-	usa = append(usa, "Alabama", "Alaska", "Arizona", "Arkansas", "California",
-		"Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
-		"Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas",
-		"Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
-		"Michigan", "Minnesota", "Mississippi", "Missouri", "Montana",
-		"Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico",
-		"New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma",
-		"Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-		"Tennessee", "Texas", "Utah", "Vermont", "Virginia",
-		"Washington", "West Virginia", "Wisconsin", "Wyoming")
-
-	fmt.Printf("len = %v \t cap = %v\n", len(usa), cap(usa))
-
-	for idx := 0; idx < len(usa); idx++ {
-		fmt.Printf("%v - \t %v\n", idx, usa[idx])
+	for x, item := range xss {
+		fmt.Printf("%v - %v\n", x, item)
+		for y, value := range item {
+			fmt.Printf("%v -\t %v\n", y, value)
+		}
 	}
 }
